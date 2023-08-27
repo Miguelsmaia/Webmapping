@@ -9,6 +9,10 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
+            display: flex; /* Use flexbox to center content vertically */
+            flex-direction: column; /* Stack content vertically */
+            align-items: center; /* Center content horizontally */
+            min-height: 100vh; /* Ensure the page takes up at least the full viewport height */
         }
         .top-bar {
             background-color: #333;
@@ -25,6 +29,7 @@
         #map {
             width: 100%; /* Use full width of the container */
             height: 70vh; /* Set height relative to viewport height */
+            max-width: 800px; /* Limit the maximum width of the map */
         }
     </style>
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
