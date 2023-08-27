@@ -23,6 +23,8 @@
             margin: 0 10px;
         }
     </style>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
 </head>
 <body>
     <div class="top-bar">
@@ -31,6 +33,14 @@
     </div>
     <h1>Welcome to My Website</h1>
     <p>This is a simple example of a top bar menu.</p>
+    <div id='map' style='width: 400px; height: 300px;'></div>
+<script>
+  mapboxgl.accessToken = 'pk.eyJ1IjoibWlndWVsc21haWEiLCJhIjoiY2xsdHRyazRtMWh1eTNsbnFjc3JsczZpbSJ9.AVjiLFVIAAs9x2xK9evetw';
+  var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11'
+  });
+</script>
 </body>
 </html>
 
