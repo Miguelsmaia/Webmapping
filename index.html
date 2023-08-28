@@ -19,6 +19,15 @@
         container: 'map',
         style: 'mapbox://styles/mapbox/light-v11'
       });
+        window.onload = function () {
+            var mq = window.matchMedia("(min-width: 420px)");
+
+            if (mq.matches) {
+                var map = L.mapbox.map('map', 'hashtagwinti.i72di96c').setView([-8, -50], 4); // set map zoom level for desktop size
+            } else {
+                var map = L.mapbox.map('map', 'hashtagwinti.i72di96c').setView([-8, -50], 3); // set map zoom level for mobile size
+            }
+        };
     </script>
 </body>
 </html>
