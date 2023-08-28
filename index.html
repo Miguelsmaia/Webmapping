@@ -48,6 +48,20 @@
                 // https://docs.mapbox.com/help/glossary/tileset-id/
                 url: 'mapbox://miguelsmaia.0jy3lc51'
             });
+            map.addLayer(
+                {
+                    "id": "teste",
+                    "minzoom": 0,
+                    "maxzoom": 22,
+                    "type": "circle",
+                    "layout": {},
+                    "source": "composite",
+                    "source-layer": "teste-c80vmi",
+                    "paint": {}
+                },
+                'road-label-simple' // Add layer below labels
+            );
+        });
     </script>
 </body>
 </html>
