@@ -40,29 +40,33 @@
                 var map = L.mapbox.map('map', 'hashtagwinti.i72di96c').setView([-8, -50], 3); // set map zoom level for mobile size
             }
         };
-        map.on('load', () => {
-            map.addSource('teste-c80vmi', {
-                type: 'vector',
-                // Use any Mapbox-hosted tileset using its tileset id.
-                // Learn more about where to find a tileset id:
-                // https://docs.mapbox.com/help/glossary/tileset-id/
-                url: 'mapbox://miguelsmaia.0jy3lc51'
-            });       
-            map.addLayer(
-                {
-                    id: "teste",
-                    minzoom: 0,
-                    maxzoom: 22,
-                    type: "circle",
-                    layout: {},
-                    source: "teste-c80vmi",
-                    paint: {
-                      'circle-color': "hsl(0, 10%, 28%)" 
-                    }
-                },
-                'road-label-simple' // Add layer below labels
-            );
-        });
+    map.on('load', () => {
+    map.addSource('mapbox-terrain', {
+        type: 'vector',
+        // Use any Mapbox-hosted tileset using its tileset id.
+        // Learn more about where to find a tileset id:
+        // https://docs.mapbox.com/help/glossary/tileset-id/
+        url: 'mapbox://mapbox.mapbox-terrain-v2'
+    });
+    
+    map.addLayer(
+        {
+            'id': 'terrain-data',
+            'type': 'line',
+            'source': 'mapbox-terrain',
+            'source-layer': 'contour',
+            'layout': {
+                'line-join': 'round',
+                'line-cap': 'round'
+            },
+            'paint': {
+                'line-color': '#ff69b4',
+                'line-width': 1
+            }
+        },
+        'road-label-simple' // Add layer below labels
+    );
+});
     </script>
 </body>
 </html>
