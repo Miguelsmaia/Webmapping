@@ -48,6 +48,27 @@
                 // https://docs.mapbox.com/help/glossary/tileset-id/
                 url: 'mapbox://miguelsmaia.0jy3lc51'
             });
+
+
+map.on('load', () => {
+    map.addSource('teste-c80vmi', {
+        type: 'vector',
+        url: 'mapbox://miguelsmaia.0jy3lc51'
+    });
+
+    map.addLayer(
+        {
+            "id": "teste",
+            "minzoom": 0,
+            "maxzoom": 22,
+            "type": "circle",
+            "layout": {},
+            "source": "composite",
+            "source-layer": "teste-c80vmi", // Use the source name defined above
+            "paint": {}
+
+
+            
             map.addLayer(
                 {
                     "id": "teste",
