@@ -34,25 +34,56 @@
       });
 
     map.on('load', () => {
-    map.addSource('teste-c80vmi', {
-        type: 'vector',
+    map.addSource('teste', {
+        type: 'Geojson',
         // Use any Mapbox-hosted tileset using its tileset id.
         // Learn more about where to find a tileset id:
         // https://docs.mapbox.com/help/glossary/tileset-id/
-        data: 'mapbox://miguelsmaia.0jy3lc51'
+        data: {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": 1,
+        "Name": "Ola"
+      },
+      "geometry": {
+        "coordinates": [
+          -7.993690267932976,
+          40.75604396811377
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ID": 2,
+        "Name": "Adeus"
+      },
+      "geometry": {
+        "coordinates": [
+          -7.321179099558151,
+          40.88855427511888
+        ],
+        "type": "Point"
+      }
+    }
+  ]
+}
     });
     
     map.addLayer(
         {
-            'id': 'teste-c80vmi',
-            'type': 'circle',
-            'source': 'teste-c80vmi',
-            'source-layer': 'teste-c80vmi',
+            'id': 'teste',
+            'type': 'point',
+            'source': 'teste',
+            'source-layer': 'teste',
             'layout': {
             },
             'paint': {
-                'circle-color': "hsl(0, 10%, 28%)",
-                'circle-width': 1
+                'color': "green",
             }
         },
         'road-label-simple' // Add layer below labels
