@@ -30,16 +30,16 @@
         container: 'map-container', // Use the map container div
         style: 'mapbox://styles/mapbox/light-v11',
         center: [-8.1234123, 39.3425], // Set the center coordinates
-        zoom: 12 // Set an initial zoom level
+        zoom: 10 // Set an initial zoom level
       });
 
-    map.on('style.load', function (e) {
+    map.on('load',{
     map.addSource('teste', {
         type: 'Geojson',
         // Use any Mapbox-hosted tileset using its tileset id.
         // Learn more about where to find a tileset id:
         // https://docs.mapbox.com/help/glossary/tileset-id/
-        data: "https://gist.github.com/Miguelsmaia/c4b5c49981077371f3bd708e9ad94d55"
+        URL: "https://gist.github.com/Miguelsmaia/c4b5c49981077371f3bd708e9ad94d55"
     });
     
     map.addLayer({
