@@ -35,9 +35,8 @@
 
     map.on('load', function () {
     map.addSource('teste', {
-        type: 'geojson', // Corrected type to lowercase
-        // Corrected property name to lowercase
-        data: "https://gist.github.com/Miguelsmaia/c4b5c49981077371f3bd708e9ad94d55"
+        type: 'geojson',
+        url: "https://gist.github.com/Miguelsmaia/c4b5c49981077371f3bd708e9ad94d55"
     });
     
     map.addLayer({
