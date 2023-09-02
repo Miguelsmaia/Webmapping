@@ -33,8 +33,7 @@
         zoom: 7 // Set an initial zoom level
       });
 
-    var data = {
-      "type": "FeatureCollection",
+    var points = {
       "features": [
         {
           "type": "Feature",
@@ -69,8 +68,8 @@
     
     map.on('load', function () {
     map.addSource('teste', {
-        "data": data,
         "type": "geojson",
+        "data": points,
         "cluster": true, // Enable clustering
         "cluster-max-zoom": 15, // Adjust as needed
         "cluster-radius": 50 // Adjust as needed
