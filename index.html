@@ -34,9 +34,10 @@
       });
   
     map.on('load', function () {
-    map.addSource('teste', {
-        "type": "geojson",
-        "data": "https://www.dropbox.com/scl/fi/yc0u6qpvvgi2ihefwg67o/teste.geojson?dl=0&rlkey=hgayaf5ctptghhbnpv0xfak42",
+        map.addSource('teste', {
+            type: 'geojson',
+            data: 'https://www.dropbox.com/scl/fi/yc0u6qpvvgi2ihefwg67o/teste.geojson?rlkey=hgayaf5ctptghhbnpv0xfak42&dl=0'
+        });
         "cluster": true, // Enable clustering
         "cluster-max-zoom": 15, // Adjust as needed
         "cluster-radius": 50 // Adjust as needed
