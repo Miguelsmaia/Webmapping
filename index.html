@@ -33,7 +33,7 @@
         zoom: 12 // Set an initial zoom level
       });
 
-    map.on('load', () => {
+    map.on('style.load', function (e) {
     map.addSource('teste', {
         type: 'Geojson',
         // Use any Mapbox-hosted tileset using its tileset id.
@@ -42,18 +42,17 @@
         data: "https://gist.github.com/Miguelsmaia/c4b5c49981077371f3bd708e9ad94d55"
     });
     
-    map.addLayer(
-        {
-            'id': 'teste',
-            'type': 'circle',
-            'source': 'teste',
-            'source-layer': 'teste',
-            'layout': {
-            },
-            'paint': {
-                'circle-color': "green",
-            }
+    map.addLayer({
+        "id": "circles1",
+        "source": "teste",
+        "type": "circle",
+        "paint": {
+            "circle-radius":10,
+            "circle-color": "black",
+            "circle-opacity": 1,
+            "circle-stroke-width": 0,
         },
+    });
         'road-label-simple' // Add layer below labels
     );
 });
