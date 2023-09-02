@@ -32,44 +32,11 @@
         center: [-8.1234123, 40.0425], // Set the center coordinates
         zoom: 7 // Set an initial zoom level
       });
-
-    var points = {
-      "features": [
-        {
-          "type": "Feature",
-          "properties": {
-            "ID": 1,
-            "Name": "Ola"
-          },
-          "geometry": {
-            "coordinates": [
-              -7.993690267932976,
-              40.75604396811377
-            ],
-            "type": "Point"
-          }
-        },
-        {
-          "type": "Feature",
-          "properties": {
-            "ID": 2,
-            "Name": "Adeus"
-          },
-          "geometry": {
-            "coordinates": [
-              -7.321179099558151,
-              40.88855427511888
-            ],
-            "type": "Point"
-          }
-        }
-      ]
-    }
-    
+  
     map.on('load', function () {
     map.addSource('teste', {
         "type": "geojson",
-        "data": points,
+        "data": "https://www.dropbox.com/scl/fi/yc0u6qpvvgi2ihefwg67o/teste.geojson?dl=0&rlkey=hgayaf5ctptghhbnpv0xfak42",
         "cluster": true, // Enable clustering
         "cluster-max-zoom": 15, // Adjust as needed
         "cluster-radius": 50 // Adjust as needed
