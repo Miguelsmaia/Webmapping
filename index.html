@@ -33,9 +33,43 @@
         zoom: 7 // Set an initial zoom level
       });
 
+    var data = {
+      "type": "FeatureCollection",
+      "features": [
+        {
+          "type": "Feature",
+          "properties": {
+            "ID": 1,
+            "Name": "Ola"
+          },
+          "geometry": {
+            "coordinates": [
+              -7.993690267932976,
+              40.75604396811377
+            ],
+            "type": "Point"
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "ID": 2,
+            "Name": "Adeus"
+          },
+          "geometry": {
+            "coordinates": [
+              -7.321179099558151,
+              40.88855427511888
+            ],
+            "type": "Point"
+          }
+        }
+      ]
+    }
+    
     map.on('load', function () {
     map.addSource('teste', {
-        "url": "https://gist.github.com/Miguelsmaia/c4b5c49981077371f3bd708e9ad94d55",
+        "data": data,
         "type": "geojson",
         "cluster": true, // Enable clustering
         "cluster-max-zoom": 15, // Adjust as needed
