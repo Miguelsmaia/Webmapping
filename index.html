@@ -32,10 +32,12 @@
         center: [-8.1234123, 40.0425], // Set the center coordinates
         zoom: 7 // Set an initial zoom level
       });
-  
+
+
+        
         map.addSource('teste', {
-            "type": 'geojson',
-            "data": 'https://raw.githubusercontent.com/Miguelsmaia/geojson-data/main/teste.geojson?token=GHSAT0AAAAAACGXSCSVFCFCKMO2ZI2S4UT4ZHTCPZA',
+            type: 'geojson',
+            data: 'https://raw.githubusercontent.com/Miguelsmaia/geojson-data/main/teste.geojson?token=GHSAT0AAAAAACGXSCSVFCFCKMO2ZI2S4UT4ZHTCPZA',
             cluster: true, // Enable clustering
             clusterMaxZoom: 15, // Adjust as needed
             clusterRadius: 50 // Adjust as needed
