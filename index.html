@@ -148,9 +148,8 @@
         // description HTML from its properties.
         map.on('click', 'unclustered-point', (e) => {
             const coordinates = e.features[0].geometry.coordinates.slice();
-            const mag = e.features[0].properties.mag;
-            const tsunami =
-                e.features[0].properties.tsunami === 1 ? 'yes' : 'no';
+            const mag = e.features[0].properties.Name;
+            const tsunami = e.features[0].properties.description;
          
             // Ensure that if the map is zoomed out such that
             // multiple copies of the feature are visible, the
@@ -172,6 +171,14 @@
         map.on('mouseleave', 'clusters', () => {
             map.getCanvas().style.cursor = '';
         });
+        
+        map.on('mouseenter', 'unclustered-point', () => {
+        map.getCanvas().style.cursor = 'pointer';
+        });
+        map.on('mouseleave', 'unclustered-point', () => {
+            map.getCanvas().style.cursor = '';
+        });
+
     });
     </script>
 </body>
