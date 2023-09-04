@@ -40,7 +40,39 @@
         map.addSource('teste', {
             type: 'geojson',
             // Point to GeoJSON data
-            data: 'https://raw.githubusercontent.com/Miguelsmaia/geojson-data/main/teste.geojson?token=GHSAT0AAAAAACGXSCSVRKKYUOQV2OFRPWBAZHTCQNA',
+            data: {
+              "type": "FeatureCollection",
+              "features": [
+                {
+                  "type": "Feature",
+                  "properties": {
+                    "ID": 1,
+                    "Name": "Ola"
+                  },
+                  "geometry": {
+                    "coordinates": [
+                      -7.993690267932976,
+                      40.75604396811377
+                    ],
+                    "type": "Point"
+                  }
+                },
+                {
+                  "type": "Feature",
+                  "properties": {
+                    "ID": 2,
+                    "Name": "Adeus"
+                  },
+                  "geometry": {
+                    "coordinates": [
+                      -7.321179099558151,
+                      40.88855427511888
+                    ],
+                    "type": "Point"
+                  }
+                }
+              ]
+            },
             cluster: true,
             clusterMaxZoom: 14, // Max zoom to cluster points on
             clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
