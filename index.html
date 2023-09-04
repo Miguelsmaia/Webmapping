@@ -182,6 +182,159 @@
         });
 
     });
+
+
+//_________________________________________________________________________________________________________
+
+        map.on('load', () => {
+        // Add a new source from our GeoJSON data and
+        // set the 'cluster' option to true. GL-JS will
+        // add the point_count property to your source data.
+        map.addSource('verde', {
+            type: 'geojson',
+            // Point to GeoJSON data
+            data: {
+              "type": "FeatureCollection",
+              "features": [
+                {
+                  "type": "Feature",
+                  "properties": {
+                    "ID": 1,
+                    "Name": "Ola",
+                    "description": "<strong>Make it Mount Pleasant</strong><p><a href='http://www.mtpleasantdc.com/makeitmtpleasant' target='_blank' title='Opens in a new window'>Make it Mount Pleasant</a> is a handmade and vintage market and afternoon of live entertainment and kids activities. 12:00-6:00 p.m.</p>",
+                    "icon": "theatre"
+                  },
+                  "geometry": {
+                    "coordinates": [
+                      -7.8,
+                      40.0
+                    ],
+                    "type": "Point"
+                  }
+                },
+                {
+                  "type": "Feature",
+                  "properties": {
+                    "ID": 2,
+                    "Name": "Adeus",
+                    "description": "<strong>Ver foto:</strong><p><a href='https://photos.google.com/album/AF1QipNrp_NkbS6mquf2xQsMI3ZdVd_yNE_AEXuMkozD/photo/AF1QipNuBmwXVDx7tjQGzsGCt4YXrKmG9me5vqX9eLwF' target='_blank' title='Opens in a new window'><strong>CB500X no acampamento</strong></a>"
+                  },
+                  "geometry": {
+                    "coordinates": [
+                      -7.3,
+                      40.1
+                    ],
+                    "type": "Point"
+                  }
+                }
+              ]
+            },
+            cluster: true,
+            clusterMaxZoom: 14, // Max zoom to cluster points on
+            clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
+        });
+        
+        map.addLayer({
+            "id": "clustersverde",
+            "type": "circle",
+            "source": "verde",
+            "filter": ["has", "point_count"],
+            "paint": {
+                "circle-color": "green",
+                "circle-radius": [
+                    "step",
+                    ["get", "point_count"],
+                    20,
+                    100,
+                    30,
+                    750,
+                    40
+                ]
+            },
+        });
+
+        map.addLayer({
+            "id": "clusterverde-count",
+            "type": "symbol",
+            "source": "verde",
+            "filter": ["has", "point_count"],
+            "layout": {
+                "text-field": "{point_count_abbreviated}",
+                "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
+                "text-size": 12
+            }
+        });
+
+        map.addLayer({
+            "id": "unclustered-pointverde",
+            "type": "circle",
+            "source": "verde",
+            "filter": ["!", ["has", "point_count"]],
+            "paint": {
+                "circle-color": "verde",
+                "circle-radius": 10,
+                "circle-opacity": 1,
+                "circle-stroke-width": 0
+            }
+        });
+    
+        // inspect a cluster on click
+        map.on('click', 'clustersverde', (e) => {
+            const features = map.queryRenderedFeatures(e.point, {
+                layers: ['clustersverde']
+            });
+            const clusterId = features[0].properties.cluster_id;
+            map.getSource('verde').getClusterExpansionZoom(
+                clusterId,
+                (err, zoom) => {
+                    if (err) return;
+         
+                    map.easeTo({
+                        center: features[0].geometry.coordinates,
+                        zoom: zoom
+                    });
+                }
+            );
+        });
+     
+        // When a click event occurs on a feature in
+        // the unclustered-point layer, open a popup at the location of the feature, with
+        // description HTML from its properties.
+        map.on('click', 'unclustered-pointverde', (e) => {
+            const coordinates = e.features[0].geometry.coordinates.slice();
+            const name = e.features[0].properties.Name;
+            const desc = e.features[0].properties.description;
+         
+            // Ensure that if the map is zoomed out such that
+            // multiple copies of the feature are visible, the
+            // popup appears over the copy being pointed to.
+            while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+            }
+            
+            new mapboxgl.Popup()
+                .setLngLat(coordinates)
+                .setHTML(
+                    //`magnitude: ${mag}<br>Was there a tsunami?: ${tsunami}`
+                    `${name}<br>${desc}`
+                )
+                .addTo(map);
+        });
+        map.on('mouseenter', 'clustersverde', () => {
+        map.getCanvas().style.cursor = 'pointer';
+        });
+        map.on('mouseleave', 'clustersverde', () => {
+            map.getCanvas().style.cursor = '';
+        });
+        
+        map.on('mouseenter', 'unclustered-pointverde', () => {
+        map.getCanvas().style.cursor = 'pointer';
+        });
+        map.on('mouseleave', 'unclustered-pointverde', () => {
+            map.getCanvas().style.cursor = '';
+        });
+
+    });    
     </script>
 </body>
 </html>
