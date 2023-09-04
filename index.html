@@ -181,12 +181,6 @@
             map.getCanvas().style.cursor = '';
         });
 
-    });
-
-
-//_________________________________________________________________________________________________________
-
-        map.on('load', () => {
         // Add a new source from our GeoJSON data and
         // set the 'cluster' option to true. GL-JS will
         // add the point_count property to your source data.
@@ -333,7 +327,7 @@
         map.on('mouseleave', 'unclustered-pointverde', () => {
             map.getCanvas().style.cursor = '';
         });
-    });    
+    });
     </script>
 </body>
 </html>
